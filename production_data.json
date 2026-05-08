@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "date": "2026-03-25 21:04:48",
+        "crop": "dhan",
+        "field_area": 2.0,
+        "seed_amount": 0,
+        "fertilizer_used": 0,
+        "water_used": 0,
+        "harvest_date": "2026-03-25",
+        "yield_kg": 45.0,
+        "yield_per_acre": 2250.0,
+        "notes": ""
+    }
+]

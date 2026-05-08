@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "title": "ধান চাষের সম্পূর্ণ পদ্ধতি",
+        "category": "ধান",
+        "duration": "15:32",
+        "language": "বাংলা",
+        "url": "https://youtube.com/watch?v=example1",
+        "channel": "কৃষি শিক্ষা",
+        "views": "50K",
+        "rating": 4.5
+    },
+    {
+        "id": 2,
+        "title": "জৈব সার তৈরির পদ্ধতি",
+        "category": "সার ব্যবস্থাপনা",
+        "duration": "12:45",
+        "language": "বাংলা",
+        "url": "https://youtube.com/watch?v=example2",
+        "channel": "জৈব কৃষি",
+        "views": "30K",
+        "rating": 4.7
+    },
+    {
+        "id": 3,
+        "title": "আলু চাষে বীজ নির্বাচন এবং রোপণ",
+        "category": "আলু",
+        "duration": "10:20",
+        "language": "বাংলা",
+        "url": "https://youtube.com/watch?v=example3",
+        "channel": "আলু উৎপাদন",
+        "views": "25K",
+        "rating": 4.3
+    }
+]

@@ -1,0 +1,114 @@
+import json
+import tkinter as tk
+import requests
+
+# 📌 Division-wise all 64 districts
+districts_by_division = {
+    "Dhaka": ["Dhaka", "Gazipur", "Narayanganj", "Kishoreganj", "Manikganj", "Munshiganj", "Narsingdi", "Tangail", "Faridpur", "Gopalganj", "Madaripur", "Rajbari", "Shariatpur"],
+    "Chattogram": ["Chattogram", "Cox’s Bazar", "Cumilla", "Brahmanbaria", "Chandpur", "Feni", "Lakshmipur", "Noakhali", "Rangamati", "Khagrachari", "Bandarban"],
+    "Rajshahi": ["Rajshahi", "Bogura", "Pabna", "Natore", "Naogaon", "Nawabganj", "Sirajganj", "Joypurhat"],
+    "Khulna": ["Khulna", "Jessore", "Bagerhat", "Magura", "Meherpur", "Narail", "Satkhira", "Jhenaidah", "Kushtia", "Chuadanga"],
+    "Barishal": ["Barishal", "Bhola", "Patuakhali", "Jhalokathi", "Barguna", "Pirojpur"],
+    "Sylhet": ["Sylhet", "Moulvibazar", "Habiganj", "Sunamganj"],
+    "Rangpur": ["Rangpur", "Dinajpur", "Kurigram", "Lalmonirhat", "Nilphamari", "Gaibandha", "Thakurgaon", "Panchagarh"],
+    "Mymensingh": ["Mymensingh", "Netrokona", "Jamalpur", "Sherpur"]
+}
+
+# 🌾 Tkinter GUI Setup
+root = tk.Tk()
+root.title("🌾 স্মার্ট কৃষি সহায়ক")
+root.geometry("500x550")
+root.configure(bg="#E8F6EF")  # light green background
+
+division = tk.StringVar()
+district = tk.StringVar()
+soil_type = tk.StringVar()
+season = tk.StringVar()
+result = tk.StringVar()
+weather_result = tk.StringVar()
+
+# 🔄 Update districts when division changes
+def update_districts(*args):
+    selected_div = division.get()
+    district_list = districts_by_division.get(selected_div, [])
+    menu = district_option["menu"]
+    menu.delete(0, "end")
+    for dist in district_list:
+        menu.add_command(label=dist, command=lambda d=dist: district.set(d))
+    if district_list:
+        district.set(district_list[0])
+
+# 🌱 Show crop suggestion
+def show_suggestion():
+    div = division.get()
+    dist = district.get()
+    soil = soil_type.get()
+    szn = season.get()
+
+    try:
+        with open("crop_data.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        crop = data[div][dist][soil][szn][0]
+        output = (
+            f"🌾 ফসল: {crop['crop']}\n"
+            f"📅 বপনের সময়: {crop['plant_time']}\n"
+            f"🌿 সার: {crop['fertilizer']}\n"
+            f"💧 পানি: {crop['water']}"
+        )
+        result.set(output)
+    except Exception as e:
+        result.set("⚠️ তথ্য পাওয়া যায়নি! " + str(e))
+
+# 🌦️ Show weather
+def show_weather():
+    city = district.get()
+    api_key = "4a75508c602e3226a2bd138bfe043fa0"
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric&lang=bn"
+
+    try:
+        response = requests.get(url)
+        data = response.json()
+
+        if data.get("cod") != 200:
+            weather_result.set("⚠️ আবহাওয়া তথ্য পাওয়া যায়নি!")
+            return
+
+        temp = data["main"]["temp"]
+        desc = data["weather"][0]["description"]
+        humidity = data["main"]["humidity"]
+        wind = data["wind"]["speed"]
+
+        weather_result.set(
+            f"🌤️ {city} এর আবহাওয়া:\n"
+            f"🌡️ তাপমাত্রা: {temp}°C\n"
+            f"☁️ অবস্থা: {desc}\n"
+            f"💧 আর্দ্রতা: {humidity}%\n"
+            f"🌬️ বাতাসের গতি: {wind} m/s"
+        )
+    except Exception as e:
+        weather_result.set("❌ আবহাওয়া আনতে সমস্যা হয়েছে\n" + str(e))
+
+# 🖼️ GUI Layout
+tk.Label(root, text="📍 বিভাগ নির্বাচন করুন:", bg="#E8F6EF", font=("Helvetica", 12, "bold")).pack()
+tk.OptionMenu(root, division, *districts_by_division.keys()).pack()
+
+tk.Label(root, text="🏙️ জেলা নির্বাচন করুন:", bg="#E8F6EF", font=("Helvetica", 12, "bold")).pack()
+district_option = tk.OptionMenu(root, district, "")
+district_option.pack()
+
+tk.Label(root, text="🌱 মাটির ধরন (loamy/clay/sandy):", bg="#E8F6EF").pack()
+tk.Entry(root, textvariable=soil_type).pack()
+
+tk.Label(root, text="📅 মৌসুম (Rabi/Kharif-1/Kharif-2):", bg="#E8F6EF").pack()
+tk.Entry(root, textvariable=season).pack()
+
+tk.Button(root, text="✅ সাজেশন দেখাও", bg="#2ECC71", fg="white", font=("Arial", 10, "bold"), command=show_suggestion).pack(pady=5)
+tk.Label(root, textvariable=result, justify="left", bg="#E8F6EF", fg="green", font=("Arial", 11)).pack(pady=10)
+
+tk.Button(root, text="🌤️ আবহাওয়া দেখাও", bg="#3498DB", fg="white", font=("Arial", 10, "bold"), command=show_weather).pack(pady=5)
+tk.Label(root, textvariable=weather_result, justify="left", bg="#E8F6EF", fg="blue", font=("Arial", 10)).pack(pady=10)
+
+division.trace("w", update_districts)
+update_districts()
+root.mainloop()
