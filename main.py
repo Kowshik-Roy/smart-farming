@@ -10,6 +10,7 @@ from tkcalendar import Calendar
 from database import init_db, load_json_to_db
 import os
 
+<<<<<<< HEAD
 # ============ নতুন ফিচার মডিউল ইম্পোর্ট করুন ============
 try:
     from feature_1_production_tracking import open_production_tracker_window
@@ -25,6 +26,8 @@ try:
 except ImportError as e:
     print(f"⚠️ কিছু ফিচার ইম্পোর্ট ব্যর্থ হয়েছে: {e}")
 
+=======
+>>>>>>> 1fca9a27dad858b437900d751c400700d2eeeeec
 # ---------------- ডাটাবেস ইনিশিয়ালাইজেশন ----------------
 try:
     init_db()
@@ -35,6 +38,7 @@ except Exception as e:
 # ---------------- GUI সেটআপ ----------------
 root = tk.Tk()
 root.title("🌾 স্মার্ট কৃষি পরিকল্পনা")
+<<<<<<< HEAD
 root.geometry("700x900")   # স্টার্টে একটু বড় উইন্ডো
 root.resizable(True, True) # ইউজার চাইলে উইন্ডো রিসাইজ করতে পারবে
 root.config(bg="#e8f5e9")
@@ -47,10 +51,16 @@ tk.Button(control_frame, text="🗕", font=("Arial", 10), width=3, pady=1, comma
 tk.Button(control_frame, text="🗖", font=("Arial", 10), width=3, pady=1, command=lambda: root.state('zoomed') if root.state()!='zoomed' else root.state('normal'), bg="#f4f4f4").pack(side="left")
 tk.Button(control_frame, text="✕", font=("Arial", 10), width=3, pady=1, command=root.destroy, bg="#f44336", fg="white").pack(side="left")
 
+=======
+root.geometry("500x800")
+root.config(bg="#e8f5e9")
+
+>>>>>>> 1fca9a27dad858b437900d751c400700d2eeeeec
 # Full HD ডিসপ্লের জন্য সেন্টারে উইন্ডো স্থাপন
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 x = (screen_width - 500) // 2
+<<<<<<< HEAD
 y = (screen_height - 900) // 2  # উচ্চতা বৃদ্ধি করা হয়েছে
 root.geometry(f"500x900+{x}+{y}")
 
@@ -94,6 +104,10 @@ root.bind_all("<MouseWheel>", _on_mousewheel)
 
 # সুবিধার জন্য একটি alias
 app = scrollable_frame
+=======
+y = (screen_height - 800) // 2
+root.geometry(f"500x800+{x}+{y}")
+>>>>>>> 1fca9a27dad858b437900d751c400700d2eeeeec
 
 # ভেরিয়েবল
 division = tk.StringVar()
@@ -1131,15 +1145,24 @@ help_menu.add_command(label="ব্যবহার নির্দেশিক�
 help_menu.add_command(label="About")
 
 # Main Content
+<<<<<<< HEAD
 tk.Label(app, text="🌾 স্মার্ট কৃষি পরিকল্পনা", bg="#e8f5e9", font=("Arial", 18, "bold"), fg="#2e7d32").pack(pady=15)
 
 # বিভাগ নির্বাচন
 tk.Label(app, text="🇧🇩 বিভাগ নির্বাচন করুন:", bg="#e8f5e9", font=("Arial", 12)).pack(pady=5)
 division_menu = tk.OptionMenu(app, division, *districts_by_division.keys(), command=lambda x: (update_districts(), update_soils(), update_seasons()))
+=======
+tk.Label(root, text="🌾 স্মার্ট কৃষি পরিকল্পনা", bg="#e8f5e9", font=("Arial", 18, "bold"), fg="#2e7d32").pack(pady=15)
+
+# বিভাগ নির্বাচন
+tk.Label(root, text="🇧🇩 বিভাগ নির্বাচন করুন:", bg="#e8f5e9", font=("Arial", 12)).pack(pady=5)
+division_menu = tk.OptionMenu(root, division, *districts_by_division.keys(), command=lambda x: (update_districts(), update_soils(), update_seasons()))
+>>>>>>> 1fca9a27dad858b437900d751c400700d2eeeeec
 division_menu.config(width=25, font=("Arial", 11), bg="white")
 division_menu.pack(pady=2)
 
 # জেলা নির্বাচন
+<<<<<<< HEAD
 tk.Label(app, text="📍 জেলা নির্বাচন করুন:", bg="#e8f5e9", font=("Arial", 12)).pack(pady=5)
 district_option = tk.OptionMenu(app, district, "")
 district_option.config(width=25, font=("Arial", 11), bg="white")
@@ -1149,16 +1172,33 @@ district.trace_add('write', lambda *args: (update_soils(), update_seasons()))
 # মাটির ধরন নির্বাচন
 tk.Label(app, text="🌱 মাটির ধরন নির্বাচন করুন:", bg="#e8f5e9", font=("Arial", 12)).pack(pady=5)
 soil_option = tk.OptionMenu(app, soil_type, *soil_options)
+=======
+tk.Label(root, text="📍 জেলা নির্বাচন করুন:", bg="#e8f5e9", font=("Arial", 12)).pack(pady=5)
+district_option = tk.OptionMenu(root, district, "")
+district_option.config(width=25, font=("Arial", 11), bg="white")
+district_option.pack(pady=2)
+district.trace('w', lambda *args: (update_soils(), update_seasons()))
+
+# মাটির ধরন নির্বাচন
+tk.Label(root, text="🌱 মাটির ধরন নির্বাচন করুন:", bg="#e8f5e9", font=("Arial", 12)).pack(pady=5)
+soil_option = tk.OptionMenu(root, soil_type, *soil_options)
+>>>>>>> 1fca9a27dad858b437900d751c400700d2eeeeec
 soil_option.config(width=25, font=("Arial", 11), bg="white")
 soil_option.pack(pady=2)
 
 # মৌসুম নির্বাচন
+<<<<<<< HEAD
 tk.Label(app, text="📅 মৌসুম নির্বাচন করুন:", bg="#e8f5e9", font=("Arial", 12)).pack(pady=5)
 season_option = tk.OptionMenu(app, season, *season_options)
+=======
+tk.Label(root, text="📅 মৌসুম নির্বাচন করুন:", bg="#e8f5e9", font=("Arial", 12)).pack(pady=5)
+season_option = tk.OptionMenu(root, season, *season_options)
+>>>>>>> 1fca9a27dad858b437900d751c400700d2eeeeec
 season_option.config(width=25, font=("Arial", 11), bg="white")
 season_option.pack(pady=2)
 
 # বাটন গুলো
+<<<<<<< HEAD
 tk.Button(app, text="✅ ফসলের সাজেশন পান", command=show_suggestion, bg="#4caf50", fg="white", font=("Arial", 12), width=20).pack(pady=12)
 tk.Button(app, text="☁️ আবহাওয়া দেখুন", command=show_weather, bg="#03a9f4", fg="white", font=("Arial", 12), width=20).pack(pady=6)
 
@@ -1173,6 +1213,22 @@ tk.Button(app, text="➕ অন্যান্য ফসলের তথ্য",
 
 # নতুন ফিচার বাটন ফ্রেম
 feature_frame = tk.Frame(app, bg="#e8f5e9")
+=======
+tk.Button(root, text="✅ ফসলের সাজেশন পান", command=show_suggestion, bg="#4caf50", fg="white", font=("Arial", 12), width=20).pack(pady=12)
+tk.Button(root, text="☁️ আবহাওয়া দেখুন", command=show_weather, bg="#03a9f4", fg="white", font=("Arial", 12), width=20).pack(pady=6)
+
+tk.Label(root, textvariable=weather_result, wraplength=460, justify="left", fg="#01579b", bg="#e8f5e9", font=("Arial", 11)).pack(pady=5)
+
+# ফসল খোঁজা
+tk.Label(root, text="🔍 ফসলের নাম দিয়ে খোঁজো:", bg="#e8f5e9", font=("Arial", 12)).pack(pady=5)
+tk.Entry(root, textvariable=search_text, font=("Arial", 11), width=30).pack()
+tk.Button(root, text="🔍 খোঁজো", command=search_crop, bg="#1976d2", fg="white", font=("Arial", 12), width=20).pack(pady=8)
+
+tk.Button(root, text="➕ অন্যান্য ফসলের তথ্য", command=open_second_window, bg="#ff9800", fg="white", font=("Arial", 12), width=20).pack(pady=8)
+
+# নতুন ফিচার বাটন ফ্রেম
+feature_frame = tk.Frame(root, bg="#e8f5e9")
+>>>>>>> 1fca9a27dad858b437900d751c400700d2eeeeec
 feature_frame.pack(pady=10)
 
 tk.Button(feature_frame, text="🌦️ বিস্তারিত আবহাওয়া", command=show_detailed_weather,
@@ -1196,6 +1252,7 @@ tk.Button(feature_frame, text="🏛️ সরকারি সুবিধা", c
 tk.Button(feature_frame, text="🩺 রোগ-বালাই", command=disease_diagnosis,
           bg="#f44336", fg="white", font=("Arial", 10), width=15).grid(row=3, column=0, padx=5, pady=2)
 
+<<<<<<< HEAD
 # নতুন ফিচারের বোতাম
 new_feature_frame = tk.LabelFrame(app, text="✨ নতুন ফিচার", bg="#f1f8e9", font=("Arial", 11, "bold"), padx=10, pady=10)
 new_feature_frame.pack(fill="x", padx=10, pady=10)
@@ -1232,6 +1289,10 @@ tk.Button(new_feature_frame, text="📋 রিপোর্ট এক্সপো
 
 # ফলাফল দেখানোর লেবেল
 result_label = tk.Label(app, textvariable=result, wraplength=460, justify="left", fg="#1b5e20", bg="#e8f5e9", font=("Arial", 11))
+=======
+# ফলাফল দেখানোর লেবেল
+result_label = tk.Label(root, textvariable=result, wraplength=460, justify="left", fg="#1b5e20", bg="#e8f5e9", font=("Arial", 11))
+>>>>>>> 1fca9a27dad858b437900d751c400700d2eeeeec
 result_label.pack(pady=10)
 
 # তথ্য ক্লিয়ার করার বাটন
@@ -1244,7 +1305,11 @@ def clear_all():
     result.set("")
     weather_result.set("")
 
+<<<<<<< HEAD
 tk.Button(app, text="🧹 সবকিছু ক্লিয়ার করুন", command=clear_all, bg="#f44336", fg="white", font=("Arial", 10), width=15).pack(pady=5)
+=======
+tk.Button(root, text="🧹 সবকিছু ক্লিয়ার করুন", command=clear_all, bg="#f44336", fg="white", font=("Arial", 10), width=15).pack(pady=5)
+>>>>>>> 1fca9a27dad858b437900d751c400700d2eeeeec
 
 # মেইন লুপ শুরু করুন
 root.mainloop()
