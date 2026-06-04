@@ -61,6 +61,11 @@ def open_loan_eligibility_window(root):
     loan_win.title("💰 ঋণ যোগ্যতা চেকার")
     loan_win.geometry("700x750")
     loan_win.config(bg="#fff8e1")
+
+    header = tk.Frame(loan_win, bg="#f9a825")
+    header.pack(fill="x")
+    tk.Label(header, text="💰 ঋণ যোগ্যতা চেকার", bg="#f9a825", fg="white",
+             font=("Arial", 13, "bold"), pady=10).pack()
     
     checker = LoanEligibilityChecker()
     
@@ -189,13 +194,16 @@ def open_loan_eligibility_window(root):
     button_frame.pack(fill="x", padx=10, pady=10)
     
     tk.Button(button_frame, text="✅ পরীক্ষা করুন", command=check,
-              bg="#fbc02d", fg="black", font=("Arial", 11, "bold"), padx=20, pady=8).pack(side="left", padx=5)
+              bg="#fbc02d", fg="black", font=("Arial", 11, "bold"), padx=20, pady=8,
+              relief="flat", bd=0, activebackground="#ffeb3b").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="🔄 পরিষ্কার করুন", command=clear,
-              bg="#1976d2", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#1976d2", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#42a5f5").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="❌ বন্ধ করুন", command=loan_win.destroy,
-              bg="#d32f2f", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#d32f2f", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#e57373").pack(side="left", padx=5)
 
 
 if __name__ == "__main__":

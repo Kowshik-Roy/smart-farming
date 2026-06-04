@@ -73,6 +73,11 @@ def open_farmer_profile_window(root):
     profile_win.title("👨‍🌾 কৃষক প্রোফাইল সিস্টেম")
     profile_win.geometry("700x650")
     profile_win.config(bg="#e3f2fd")
+
+    header = tk.Frame(profile_win, bg="#5c6bc0")
+    header.pack(fill="x")
+    tk.Label(header, text="👨‍🌾 কৃষক প্রোফাইল ম্যানেজার", bg="#5c6bc0", fg="white",
+             font=("Arial", 13, "bold"), pady=10).pack()
     
     profile = FarmerProfile()
     current_farmer_id = [None]
@@ -180,13 +185,16 @@ def open_farmer_profile_window(root):
     button_frame.pack(fill="x", padx=10, pady=10)
     
     tk.Button(button_frame, text="➕ নতুন কৃষক", command=add_new_farmer,
-              bg="#4caf50", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#4caf50", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#66bb6a").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="🔄 রিফ্রেশ", command=refresh_list,
-              bg="#2196f3", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#2196f3", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#42a5f5").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="❌ বন্ধ করুন", command=profile_win.destroy,
-              bg="#f44336", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#f44336", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#e57373").pack(side="left", padx=5)
     
     refresh_list()
 

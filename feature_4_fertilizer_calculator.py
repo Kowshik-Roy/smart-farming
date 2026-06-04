@@ -45,6 +45,11 @@ def open_fertilizer_calculator_window(root):
     calc_win.title("📊 সার ক্যালকুলেটর")
     calc_win.geometry("700x700")
     calc_win.config(bg="#fff3e0")
+
+    header = tk.Frame(calc_win, bg="#fb8c00")
+    header.pack(fill="x")
+    tk.Label(header, text="📊 সার ক্যালকুলেটর", bg="#fb8c00", fg="white",
+             font=("Arial", 13, "bold"), pady=10).pack()
     
     # ======= ইনপুট ফ্রেম =======
     input_frame = tk.LabelFrame(calc_win, text="📝 সার হিসাব করুন", 
@@ -168,13 +173,16 @@ def open_fertilizer_calculator_window(root):
     button_frame.pack(fill="x", padx=10, pady=10)
     
     tk.Button(button_frame, text="🧮 হিসাব করুন", command=calculate,
-              bg="#ff9800", fg="white", font=("Arial", 11, "bold"), padx=20, pady=8).pack(side="left", padx=5)
+              bg="#ff9800", fg="white", font=("Arial", 11, "bold"), padx=20, pady=8,
+              relief="flat", bd=0, activebackground="#ffb74d").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="🔄 পরিষ্কার করুন", command=clear_results,
-              bg="#2196f3", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#2196f3", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#64b5f6").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="❌ বন্ধ করুন", command=calc_win.destroy,
-              bg="#f44336", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#f44336", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#e57373").pack(side="left", padx=5)
 
 
 if __name__ == "__main__":

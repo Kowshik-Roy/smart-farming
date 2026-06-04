@@ -65,6 +65,11 @@ def open_land_mapping_window(root):
     map_win.title("🌏 জমির ম্যাপিং সিস্টেম")
     map_win.geometry("750x650")
     map_win.config(bg="#e1f5fe")
+
+    header = tk.Frame(map_win, bg="#0288d1")
+    header.pack(fill="x")
+    tk.Label(header, text="🌏 জমির ম্যাপিং", bg="#0288d1", fg="white",
+             font=("Arial", 13, "bold"), pady=10).pack()
     
     mapper = LandMapping()
     
@@ -170,13 +175,16 @@ def open_land_mapping_window(root):
     button_frame.pack(fill="x", padx=10, pady=10)
     
     tk.Button(button_frame, text="➕ প্লট যোগ করুন", command=add_plot,
-              bg="#00897b", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#00897b", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#26a69a").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="🔄 রিফ্রেশ", command=refresh_display,
-              bg="#0288d1", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#0288d1", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#03a9f4").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="❌ বন্ধ করুন", command=map_win.destroy,
-              bg="#d32f2f", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#d32f2f", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#e57373").pack(side="left", padx=5)
     
     refresh_display()
 

@@ -68,6 +68,11 @@ def open_machinery_rental_window(root):
     rental_win.title("🚜 যন্ত্রপাতি ভাড়া সেবা")
     rental_win.geometry("750x700")
     rental_win.config(bg="#eceff1")
+
+    header = tk.Frame(rental_win, bg="#00796b")
+    header.pack(fill="x")
+    tk.Label(header, text="🚜 যন্ত্রপাতি ভাড়া সেবা", bg="#00796b", fg="white",
+             font=("Arial", 13, "bold"), pady=10).pack()
     
     rental = MachineryRental()
     
@@ -207,13 +212,16 @@ def open_machinery_rental_window(root):
             messagebox.showerror("ত্রুটি", "❌ ডাটা যাচাই করুন")
     
     tk.Button(button_frame, text="➕ ভাড়া যোগ করুন", command=add_rental,
-              bg="#00796b", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#00796b", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#009688").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="🔄 রিফ্রেশ", command=refresh_history,
-              bg="#0097a7", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#0097a7", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#26c6da").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="❌ বন্ধ করুন", command=rental_win.destroy,
-              bg="#c62828", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#c62828", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#e57373").pack(side="left", padx=5)
     
     calculate_cost()
     refresh_history()

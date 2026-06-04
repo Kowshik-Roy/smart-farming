@@ -1160,43 +1160,8 @@ def create_button(parent, text, command, bg_color=COLOR_BUTTON_PRIMARY, fg_color
     """একটি স্টাইলিশ বাটন তৈরি করুন"""
     btn = tk.Button(parent, text=text, command=command, bg=bg_color, fg=fg_color,
                    font=("Arial", font_size, "bold"), width=width, padx=padx, pady=pady,
-                   relief="raised", bd=2, cursor="hand2", activebackground=bg_color)
+                   relief="raised", bd=2, cursor="hand2")
     return btn
-
-
-def create_action_button(parent, text, command, bg_color, fg_color="white", font_size=10):
-    """দ্রুত অ্যাকশন বাটন তৈরি করুন"""
-    btn = tk.Button(parent, text=text, command=command, bg=bg_color, fg=fg_color,
-                   font=("Arial", font_size, "bold"), relief="flat", bd=0,
-                   padx=10, pady=12, cursor="hand2", activebackground="#ffffff")
-    return btn
-
-
-def create_feature_tile(parent, icon, title, description, command, bg_color):
-    """একটি রঙিন ফিচার টাইল তৈরি করুন"""
-    tile = tk.Frame(parent, bg=bg_color, bd=0, relief="flat")
-    tile.grid_columnconfigure(0, weight=1)
-    tile.grid_rowconfigure(0, weight=1)
-
-    icon_label = tk.Label(tile, text=icon, bg=bg_color, fg="white",
-                          font=("Arial", 16), pady=10)
-    icon_label.pack()
-
-    title_label = tk.Label(tile, text=title, bg=bg_color, fg="white",
-                           font=("Arial", 10, "bold"), wraplength=160, justify="center")
-    title_label.pack(fill="x", padx=12)
-
-    desc_label = tk.Label(tile, text=description, bg=bg_color, fg="#F1F8E9",
-                          font=("Arial", 9), wraplength=160, justify="center")
-    desc_label.pack(fill="x", padx=12, pady=(4, 10))
-
-    open_btn = tk.Button(tile, text="▶️ খুলুন", command=command,
-                         bg="white", fg=bg_color, font=("Arial", 9, "bold"),
-                         bd=0, relief="flat", cursor="hand2", activebackground="#f1f8e9")
-    open_btn.pack(fill="x", padx=18, pady=(0, 12))
-
-    tile.config(highlightbackground="#cfd8dc", highlightthickness=1)
-    return tile
 
 # ============ হেডার সেকশন ============
 header_frame = tk.Frame(app, bg=COLOR_PRIMARY)
@@ -1217,18 +1182,18 @@ tk.Label(header_content, text="আধুনিক কৃষি ব্যবস�
         font=("Arial", 11), bg=COLOR_PRIMARY, fg="#E8F5E9").pack()
 
 # ============ মূল অ্যাকশন বাটন সেকশন ============
-action_frame = tk.Frame(app, bg=COLOR_BG, relief="flat")
-action_frame.pack(fill="x", padx=15, pady=20)
+action_frame = tk.Frame(app, bg=COLOR_BG)
+action_frame.pack(fill="x", padx=20, pady=10)
 
 # ফসলের সাজেশন বাটন
 suggestion_btn = create_button(action_frame, "✅ ফসলের সাজেশন পান", show_suggestion,
-                               bg_color=COLOR_BUTTON_SECONDARY, font_size=14, width=25, padx=20, pady=12)
-suggestion_btn.pack(side="left", expand=True, fill="x", padx=(0, 8))
+                               bg_color=COLOR_BUTTON_SECONDARY, font_size=13, width=25, padx=15, pady=8)
+suggestion_btn.pack(side="left", expand=True, fill="x", padx=(0, 5))
 
 # আবহাওয়া বাটন
 weather_btn = create_button(action_frame, "☁️ আবহাওয়া দেখুন", show_weather,
-                            bg_color=COLOR_BUTTON_INFO, font_size=14, width=25, padx=20, pady=12)
-weather_btn.pack(side="right", expand=True, fill="x", padx=(8, 0))
+                            bg_color=COLOR_BUTTON_INFO, font_size=13, width=25, padx=15, pady=8)
+weather_btn.pack(side="right", expand=True, fill="x", padx=(5, 0))
 
 # আবহাওয়া ফলাফল
 weather_result_label = tk.Label(app, textvariable=weather_result, wraplength=600, 
@@ -1237,52 +1202,52 @@ weather_result_label = tk.Label(app, textvariable=weather_result, wraplength=600
 weather_result_label.pack(pady=5)
 
 # ============ অবস্থান নির্বাচন কার্ড ============
-location_card = tk.Frame(app, bg=COLOR_CARD, relief="raised", bd=2)
-location_card.pack(fill="x", padx=12, pady=15)
+location_card = tk.Frame(app, bg=COLOR_CARD, relief="raised", bd=1)
+location_card.pack(fill="x", padx=20, pady=10)
 
 # কার্ড হেডার
 loc_header = tk.Frame(location_card, bg=COLOR_ACCENT)
 loc_header.pack(fill="x")
 tk.Label(loc_header, text="📍 অবস্থান এবং পরিবেশ নির্বাচন করুন", 
-        font=("Arial", 13, "bold"), bg=COLOR_ACCENT, fg="white", pady=12).pack()
+        font=("Arial", 12, "bold"), bg=COLOR_ACCENT, fg="white", pady=8).pack()
 
 # গ্রিড লেআউটের জন্য ফ্রেম
 loc_grid = tk.Frame(location_card, bg=COLOR_CARD)
-loc_grid.pack(fill="x", padx=20, pady=18)
+loc_grid.pack(fill="x", padx=15, pady=12)
 
 # কলাম কনফিগারেশন
 for i in range(2):
     loc_grid.columnconfigure(i, weight=1)
 
 # বিভাগ
-tk.Label(loc_grid, text="🇧🇩 বিভাগ:", bg=COLOR_CARD, font=("Arial", 11, "bold"),
-        fg=COLOR_TEXT).grid(row=0, column=0, sticky="w", pady=8, padx=8)
+tk.Label(loc_grid, text="🇧🇩 বিভাগ:", bg=COLOR_CARD, font=("Arial", 10, "bold"),
+        fg=COLOR_TEXT).grid(row=0, column=0, sticky="w", pady=5, padx=5)
 division_menu = tk.OptionMenu(loc_grid, division, *districts_by_division.keys(), 
                              command=lambda x: (update_districts(), update_soils(), update_seasons()))
-division_menu.config(width=20, font=("Arial", 11), bg="white", relief="solid", bd=1, padx=5, pady=3)
-division_menu.grid(row=0, column=1, sticky="ew", pady=8, padx=8)
+division_menu.config(width=18, font=("Arial", 10), bg="white", relief="solid", bd=1)
+division_menu.grid(row=0, column=1, sticky="ew", pady=5, padx=5)
 
 # জেলা
-tk.Label(loc_grid, text="📍 জেলা:", bg=COLOR_CARD, font=("Arial", 11, "bold"),
-        fg=COLOR_TEXT).grid(row=1, column=0, sticky="w", pady=8, padx=8)
+tk.Label(loc_grid, text="📍 জেলা:", bg=COLOR_CARD, font=("Arial", 10, "bold"),
+        fg=COLOR_TEXT).grid(row=1, column=0, sticky="w", pady=5, padx=5)
 district_option = tk.OptionMenu(loc_grid, district, "")
-district_option.config(width=20, font=("Arial", 11), bg="white", relief="solid", bd=1, padx=5, pady=3)
-district_option.grid(row=1, column=1, sticky="ew", pady=8, padx=8)
+district_option.config(width=18, font=("Arial", 10), bg="white", relief="solid", bd=1)
+district_option.grid(row=1, column=1, sticky="ew", pady=5, padx=5)
 district.trace_add('write', lambda *args: (update_soils(), update_seasons()))
 
 # মাটির ধরন
-tk.Label(loc_grid, text="🌱 মাটির ধরন:", bg=COLOR_CARD, font=("Arial", 11, "bold"),
-        fg=COLOR_TEXT).grid(row=2, column=0, sticky="w", pady=8, padx=8)
+tk.Label(loc_grid, text="🌱 মাটির ধরন:", bg=COLOR_CARD, font=("Arial", 10, "bold"),
+        fg=COLOR_TEXT).grid(row=2, column=0, sticky="w", pady=5, padx=5)
 soil_option = tk.OptionMenu(loc_grid, soil_type, *soil_options)
-soil_option.config(width=20, font=("Arial", 11), bg="white", relief="solid", bd=1, padx=5, pady=3)
-soil_option.grid(row=2, column=1, sticky="ew", pady=8, padx=8)
+soil_option.config(width=18, font=("Arial", 10), bg="white", relief="solid", bd=1)
+soil_option.grid(row=2, column=1, sticky="ew", pady=5, padx=5)
 
 # মৌসুম
-tk.Label(loc_grid, text="📅 মৌসুম:", bg=COLOR_CARD, font=("Arial", 11, "bold"),
-        fg=COLOR_TEXT).grid(row=3, column=0, sticky="w", pady=8, padx=8)
+tk.Label(loc_grid, text="📅 মৌসুম:", bg=COLOR_CARD, font=("Arial", 10, "bold"),
+        fg=COLOR_TEXT).grid(row=3, column=0, sticky="w", pady=5, padx=5)
 season_option = tk.OptionMenu(loc_grid, season, *season_options)
-season_option.config(width=20, font=("Arial", 11), bg="white", relief="solid", bd=1, padx=5, pady=3)
-season_option.grid(row=3, column=1, sticky="ew", pady=8, padx=8)
+season_option.config(width=18, font=("Arial", 10), bg="white", relief="solid", bd=1)
+season_option.grid(row=3, column=1, sticky="ew", pady=5, padx=5)
 
 # ============ ফলাফল দেখানোর কার্ড ============
 result_card = tk.Frame(app, bg=COLOR_CARD, relief="raised", bd=1)
@@ -1339,25 +1304,22 @@ quick_grid.pack(fill="x", padx=15, pady=12)
 
 # 2x4 গ্রিড লেআউট
 quick_buttons = [
-    ("🌦️ আবহাওয়া", show_detailed_weather, "#1976D2"),
-    ("💰 বাজার দর", show_market_price, "#F57F17"),
-    ("🏢 কৃষি অফিস", show_nearby_offices, "#388E3C"),
-    ("🧮 লাভ গণনা", profit_calculator, "#8E24AA"),
-    ("👥 কৃষক ফোরাম", farmer_forum, "#455A64"),
-    ("🏛️ সরকারি সুবিধা", government_schemes, "#6D4C41"),
-    ("🩺 রোগ-বালাই", disease_diagnosis, "#D32F2F"),
-    ("📋 রিপোর্ট", lambda: open_report_export_window(root), "#1565C0"),
+    ("🌦️ আবহাওয়া", show_detailed_weather, COLOR_BUTTON_INFO),
+    ("💰 বাজার দর", show_market_price, "#FF9800"),
+    ("🏢 কৃষি অফিস", show_nearby_offices, COLOR_BUTTON_SECONDARY),
+    ("🧮 লাভ গণনা", profit_calculator, "#9C27B0"),
+    ("👥 কৃষক ফোরাম", farmer_forum, "#607D8B"),
+    ("🏛️ সরকারি সুবিধা", government_schemes, "#795548"),
+    ("🩺 রোগ-বালাই", disease_diagnosis, COLOR_BUTTON_DANGER),
 ]
 
 for i, (text, cmd, color) in enumerate(quick_buttons):
     row = i // 4
     col = i % 4
-    btn = create_action_button(quick_grid, text, cmd, bg_color=color)
-    btn.grid(row=row, column=col, padx=6, pady=6, sticky="nsew")
+    btn = create_button(quick_grid, text, cmd, bg_color=color, 
+                       font_size=9, width=12, padx=5, pady=4)
+    btn.grid(row=row, column=col, padx=3, pady=5, sticky="nsew")
     quick_grid.columnconfigure(col, weight=1)
-
-for row in range(2):
-    quick_grid.rowconfigure(row, weight=1)
 
 # ============ নতুন ফিচার সেকশন ============
 features_card = tk.Frame(app, bg=COLOR_CARD, relief="raised", bd=1)
@@ -1372,29 +1334,32 @@ tk.Label(features_header, text="✨ নতুন ফিচারসমূহ",
 features_grid = tk.Frame(features_card, bg=COLOR_CARD)
 features_grid.pack(fill="x", padx=15, pady=12)
 
-# 5-কলাম গ্রিড লেআউট
+# 3-কলাম গ্রিড লেআউট
 new_features = [
-    ("🌾", "উৎপাদন ট্র্যাকিং", "ফসলের উৎপাদন, জমি এবং ফলন ট্র্যাক করুন", lambda: open_production_tracker_window(root), "#2E7D32"),
-    ("👨‍🌾", "কৃষক প্রোফাইল", "কৃষকের তথ্য ও জমির বিবরণ সেভ করুন", lambda: open_farmer_profile_window(root), "#388E3C"),
-    ("🌏", "জমির ম্যাপিং", "জমির সীমানা ও অবস্থান সংরক্ষণ করুন", lambda: open_land_mapping_window(root), "#1B5E20"),
-    ("📊", "সার ক্যালকুলেটর", "ফসল অনুযায়ী সঠিক সার পরিমাণ দেখুন", lambda: open_fertilizer_calculator_window(root), "#2E7D32"),
-    ("🚜", "যন্ত্রপাতি ভাড়া", "ট্রাক্টর ও সরঞ্জাম দ্রুত ভাড়া নিন", lambda: open_machinery_rental_window(root), "#00796B"),
-    ("📱", "বীজ ডিরেক্টরি", "সর্বোত্তম বীজ ও সরঞ্জাম সরবরাহকারী খুঁজুন", lambda: open_seeds_equipment_window(root), "#7B1FA2"),
-    ("💰", "ঋণ চেকার", "আপনার ঋণ যোগ্যতা দ্রুত যাচাই করুন", lambda: open_loan_eligibility_window(root), "#F57F17"),
-    ("📈", "ফসল রোটেশন", "মাটির স্বাস্থ্য হিসেবে ফসলের চক্র পরিকল্পনা করুন", lambda: open_crop_rotation_window(root), "#F57C00"),
-    ("🎥", "ভিডিও লাইব্রেরি", "চাষাবাদের ভিডিও টিউটোরিয়াল দেখুন", lambda: open_video_library_window(root), "#E91E63"),
-    ("📋", "রিপোর্ট এক্সপোর্ট", "রিপোর্ট তৈরি করে নিরাপদে এক্সপোর্ট করুন", lambda: open_report_export_window(root), "#1565C0"),
+    ("🌾 উৎপাদন ট্র্যাকিং", lambda: open_production_tracker_window(root), "#81C784"),
+    ("👨‍🌾 কৃষক প্রোফাইল", lambda: open_farmer_profile_window(root), "#66BB6A"),
+    ("🌏 জমির ম্যাপিং", lambda: open_land_mapping_window(root), "#4CAF50"),
+    ("📊 সার ক্যালকুলেটর", lambda: open_fertilizer_calculator_window(root), "#388E3C"),
+    ("🚜 যন্ত্রপাতি ভাড়া", lambda: open_machinery_rental_window(root), "#00796B"),
+    ("📱 বীজ ডিরেক্টরি", lambda: open_seeds_equipment_window(root), "#7B1FA2"),
+    ("💰 ঋণ চেকার", lambda: open_loan_eligibility_window(root), "#F57F17"),
+    ("📈 ফসল রোটেশন", lambda: open_crop_rotation_window(root), "#F57C00"),
+    ("🎥 ভিডিও লাইব্রেরি", lambda: open_video_library_window(root), "#E91E63"),
 ]
 
-for i, (icon, text, desc, cmd, color) in enumerate(new_features):
-    row = i // 5
-    col = i % 5
-    tile = create_feature_tile(features_grid, icon, text, desc, cmd, color)
-    tile.grid(row=row, column=col, padx=6, pady=6, sticky="nsew")
+for i, (text, cmd, color) in enumerate(new_features):
+    row = i // 3
+    col = i % 3
+    btn = create_button(features_grid, text, cmd, bg_color=color, 
+                       font_size=9, width=14, padx=5, pady=4)
+    btn.grid(row=row, column=col, padx=4, pady=5, sticky="nsew")
     features_grid.columnconfigure(col, weight=1)
 
-for r in range(2):
-    features_grid.rowconfigure(r, weight=1)
+# রিপোর্ট এক্সপোর্ট বাটন (পূর্ণ প্রস্থ)
+report_btn = create_button(features_grid, "📋 রিপোর্ট এক্সপোর্ট", 
+                          lambda: open_report_export_window(root),
+                          bg_color="#1565C0", font_size=10, width=30)
+report_btn.grid(row=3, column=0, columnspan=3, padx=4, pady=8, sticky="ew")
 
 # ============ ক্লিয়ার বাটন ============
 clear_frame = tk.Frame(app, bg=COLOR_BG)

@@ -91,6 +91,11 @@ def open_production_tracker_window(root):
     tracker_win.title("🌾 কৃষি উৎপাদন ট্র্যাকিং")
     tracker_win.geometry("700x600")
     tracker_win.config(bg="#e8f5e9")
+
+    header = tk.Frame(tracker_win, bg="#388e3c")
+    header.pack(fill="x")
+    tk.Label(header, text="🌾 উৎপাদন ট্র্যাকিং", bg="#388e3c", fg="white",
+             font=("Arial", 13, "bold"), pady=10).pack()
     
     tracker = ProductionTracker()
     
@@ -170,13 +175,16 @@ def open_production_tracker_window(root):
             messagebox.showerror("ত্রুটি", "❌ সঠিক সংখ্যা দিন")
     
     tk.Button(button_frame, text="✅ রেকর্ড যোগ করুন", command=add_new_record,
-              bg="#4caf50", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#4caf50", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#66bb6a").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="🔄 রিফ্রেশ", command=refresh_table,
-              bg="#2196f3", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#2196f3", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#42a5f5").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="❌ বন্ধ করুন", command=tracker_win.destroy,
-              bg="#f44336", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#f44336", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#e57373").pack(side="left", padx=5)
     
     refresh_table()
 

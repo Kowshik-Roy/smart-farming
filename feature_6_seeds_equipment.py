@@ -90,6 +90,11 @@ def open_seeds_equipment_window(root):
     dir_win.title("📱 বীজ ও সরঞ্জাম ডিরেক্টরি")
     dir_win.geometry("800x750")
     dir_win.config(bg="#f3e5f5")
+
+    header = tk.Frame(dir_win, bg="#8e24aa")
+    header.pack(fill="x")
+    tk.Label(header, text="📱 বীজ ও সরঞ্জাম ডিরেক্টরি", bg="#8e24aa", fg="white",
+             font=("Arial", 13, "bold"), pady=10).pack()
     
     directory = SeedsEquipmentDirectory()
     
@@ -226,16 +231,20 @@ def open_seeds_equipment_window(root):
     button_frame.pack(fill="x", padx=10, pady=10)
     
     tk.Button(button_frame, text="🔍 অনুসন্ধান", command=search,
-              bg="#7b1fa2", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#7b1fa2", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#9c27b0").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="➕ যোগ করুন", command=add_store,
-              bg="#6a1b9a", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#6a1b9a", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#8e24aa").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="🔄 সব দেখুন", command=refresh_list,
-              bg="#512da8", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#512da8", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#5e35b1").pack(side="left", padx=5)
     
     tk.Button(button_frame, text="❌ বন্ধ করুন", command=dir_win.destroy,
-              bg="#d32f2f", fg="white", font=("Arial", 10), padx=15).pack(side="left", padx=5)
+              bg="#d32f2f", fg="white", font=("Arial", 10, "bold"), padx=15, pady=8,
+              relief="flat", bd=0, activebackground="#ef5350").pack(side="left", padx=5)
     
     refresh_list()
 
